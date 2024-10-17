@@ -1,0 +1,24 @@
+{
+  "name": "datamorph",
+  "version": "1.0.0",
+  "description": "A package that allows you to convert your data between different formats.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smv1999/datamorph.git"
+  },
+  "keywords": [
+    "csv",
+    "json",
+    "xml"
+  ],
+  "author": "Vaidhyanathan S M",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smv1999/datamorph/issues"
+  },
+  "homepage": "https://github.com/smv1999/datamorph#readme"
+}
