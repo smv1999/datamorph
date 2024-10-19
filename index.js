@@ -15,7 +15,7 @@
     - JUnit
     - JMeter
 ```
- * @param {string} yamlStr - A Valid YAML string
+ * @param {string} yamlStr - A Valid YAML string: contents of the .yaml file
  * @returns {string[]} - JSON string
  */
 function convertYAMLToJSON(yamlStr) {
@@ -129,7 +129,7 @@ function parseValue(value) {
 
 /**
  *
- * @param {*} ffString - A delimiter-separated flat file string
+ * @param {*} ffString - A delimiter-separated flat file string: contents of the flat file
  * @param {*} dataSeparator - A valid data separator(delimiter) such as ',', ';', and '#'
  * @returns {string} - JSON string
  */
@@ -203,7 +203,7 @@ function convertJSONToFlatFile(jsonString, lineSeparator, dataSeparator) {
 
 /**
  *
- * @param {*} jsonString - A valid JSON string ideally with no nested values
+ * @param {*} jsonString - A valid JSON string with no nested structure
  * @param {*} lineSeparator - A line separator representing Windows new line character: '\r\n' or Linux
  * new line character: '\n'
  * @param {*} dataSeparator - A valid data separator(delimiter) such as ',', ';', and '#'
@@ -225,9 +225,98 @@ function parseJSONForFlatFile(jsonString, lineSeparator, dataSeparator) {
     throw error;
   }
 }
-
-// Handling csv- comma,semicolon or any other valid separator
 // Enclosed by "" CSV
+
+/**
+ *
+ * @param {*} iniString - A valid INI string: contents of the .ini file
+ * @returns {string} - JSON string
+ */
+function convertINIToJSON(iniString) {
+  const jsonString = JSON.stringify(parseINI(iniString), null, 2);
+  return jsonString;
+}
+
+/**
+ *
+ * @param {*} iniString - A valid INI string: contents of the .ini file
+ * @returns {object} - JSON object
+ */
+function parseINI(iniString) {
+  const result = {};
+  let currentObj = {};
+
+  const lines = iniString.split("\n");
+  let mainKey = "";
+
+  for (let line of lines) {
+    line = line.trim();
+
+    // Ignore the empty lines and comments
+    if (!line || line.startsWith("#")) continue;
+
+    if (line.startsWith("[") && line.endsWith("]")) {
+      currentObj = {};
+      mainKey = line.substring(line.indexOf("[") + 1, line.indexOf("]"));
+      result[mainKey] = {};
+    } else {
+      const [key, value] = line.split("=").map((part) => part.trim());
+      currentObj[key] = value;
+      result[mainKey] = currentObj;
+    }
+  }
+  return result;
+}
+
+/**
+ *
+ * @param {*} jsonString - A valid JSON string with no nested structure
+ * @returns {string} - INI string
+ */
+function convertJSONToINI(jsonString) {
+  const iniString = parseJSONForINI(jsonString);
+  return iniString;
+}
+
+/**
+ *
+ * @param {*} jsonString - A valid JSON string with no nested structure
+ * @returns {string} - INI string
+ */
+function parseJSONForINI(jsonString) {
+  let result = "";
+
+  try {
+    const jsonObj = JSON.parse(jsonString);
+
+    const topLevelKeys = Object.keys(jsonObj);
+
+    for (let index = 0; index < topLevelKeys.length; index++) {
+      const element = topLevelKeys[index];
+
+      result += "[" + element + "]\n";
+
+      const innerObj = jsonObj[element];
+
+      const innerLevelKeys = Object.keys(innerObj);
+
+      for (
+        let innerIndex = 0;
+        innerIndex < innerLevelKeys.length;
+        innerIndex++
+      ) {
+        const element = innerLevelKeys[innerIndex];
+
+        result += element + "=" + innerObj[element] + "\n";
+      }
+      result += "\n";
+    }
+
+    return result;
+  } catch (error) {
+    throw error;
+  }
+}
 
 module.exports = {
   convertYAMLToJSON,

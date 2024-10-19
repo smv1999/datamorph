@@ -13,7 +13,9 @@
   "keywords": [
     "csv",
     "json",
-    "xml"
+    "xml",
+    "yaml",
+    "ini"
   ],
   "author": "Vaidhyanathan S M",
   "license": "MIT",

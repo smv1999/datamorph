@@ -182,3 +182,69 @@ const jsonString = `
 // console.log(convertCSVToJSON(csvString));
 // console.log(parseJSONForCSV(jsonString));
 console.log(convertJSONToFlatFile(jsonString, "\n", ";"));
+
+// Example usage for INI
+
+const iniString = `
+# Sample INI file for configuration
+
+[general]
+app_name = MyApp
+version = 1.2.3
+is_active = true
+
+[database]
+host = localhost
+port = 5432
+username = admin
+password = secret
+
+[paths]
+log_path = /var/log/myapp/
+data_path = /usr/local/myapp/data/
+
+[features]
+enable_logging = true
+max_connections = 100
+timeout = 30
+
+[mail]
+smtp_server = smtp.mailserver.com
+smtp_port = 587
+use_tls = true
+sender_email = noreply@myapp.com
+`;
+
+const jsonStringForINI = `
+{
+  "general": {
+    "app_name": "MyApp",
+    "version": "1.2.3",
+    "is_active": "true"
+  },
+  "database": {
+    "host": "localhost",
+    "port": "5432",
+    "username": "admin",
+    "password": "secret"
+  },
+  "paths": {
+    "log_path": "/var/log/myapp/",
+    "data_path": "/usr/local/myapp/data/"
+  },
+  "features": {
+    "enable_logging": "true",
+    "max_connections": "100",
+    "timeout": "30"
+  },
+  "mail": {
+    "smtp_server": "smtp.mailserver.com",
+    "smtp_port": "587",
+    "use_tls": "true",
+    "sender_email": "noreply@myapp.com"
+  }
+}
+`;
+
+// console.log(convertINIToJSON(iniString));
+console.log(convertJSONToINI(jsonStringForINI));
