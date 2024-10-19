@@ -19,6 +19,8 @@
  * @returns {string[]} - JSON string
  */
 function convertYAMLToJSON(yamlStr) {
+  if (yamlStr === undefined)
+    throw Error("Missing required argument: yamlString");
   var jsonString = JSON.stringify(parseYAML(yamlStr), null, 2);
   return jsonString;
 }
@@ -134,6 +136,10 @@ function parseValue(value) {
  * @returns {string} - JSON string
  */
 function convertFlatFileToJSON(ffString, dataSeparator) {
+  if (ffString === undefined)
+    throw Error("Missing required argument(s): ffString");
+  else if (dataSeparator === undefined)
+    throw Error("Missing required argument(s): dataSeparator");
   const jsonString = JSON.stringify(
     parseFlatFile(ffString, dataSeparator),
     null,
@@ -193,6 +199,12 @@ function parseFlatFile(ffString, dataSeparator) {
  * @returns {string} - A delimiter-separated flat file string
  */
 function convertJSONToFlatFile(jsonString, lineSeparator, dataSeparator) {
+  if (jsonString === undefined)
+    throw Error("Missing required argument(s): jsonString");
+  else if (lineSeparator === undefined)
+    throw Error("Missing required argument(s): lineSeparator");
+  else if (dataSeparator === undefined)
+    throw Error("Missing required argument(s): dataSeparator");
   const ffString = parseJSONForFlatFile(
     jsonString,
     lineSeparator,
@@ -233,6 +245,9 @@ function parseJSONForFlatFile(jsonString, lineSeparator, dataSeparator) {
  * @returns {string} - JSON string
  */
 function convertINIToJSON(iniString) {
+  if (iniString === undefined)
+    throw Error("Missing required argument(s): iniString");
+
   const jsonString = JSON.stringify(parseINI(iniString), null, 2);
   return jsonString;
 }
@@ -274,6 +289,9 @@ function parseINI(iniString) {
  * @returns {string} - INI string
  */
 function convertJSONToINI(jsonString) {
+  if (jsonString === undefined)
+    throw Error("Missing required argument(s): jsonString");
+
   const iniString = parseJSONForINI(jsonString);
   return iniString;
 }
@@ -322,4 +340,6 @@ module.exports = {
   convertYAMLToJSON,
   convertFlatFileToJSON,
   convertJSONToFlatFile,
+  convertINIToJSON,
+  convertJSONToINI,
 };

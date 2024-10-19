@@ -1,5 +1,5 @@
 {
-  "name": "datamorph",
+  "name": "@smv1999/datamorph",
   "version": "1.0.0",
   "description": "A package that allows you to convert your data between different formats.",
   "main": "index.js",
@@ -15,7 +15,8 @@
     "json",
     "xml",
     "yaml",
-    "ini"
+    "ini",
+    "datamorph"
   ],
   "author": "Vaidhyanathan S M",
   "license": "MIT",

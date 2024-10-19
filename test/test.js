@@ -1,4 +1,8 @@
+const { convertINIToJSON } = require("../index.js");
+const { convertJSONToINI } = require("../index.js");
+const { convertYAMLToJSON } = require("../index.js");
 const { convertJSONToFlatFile } = require("../index.js");
+const { convertFlatFileToJSON } = require("../index.js");
 
 // YAML Example Usage
 const yamlString = `
@@ -108,14 +112,14 @@ xmas-fifth-day:
   turtle-doves: two
 `;
 
-// const jsonObject = convertYAMLToJSON(yamlString);
-// console.log(jsonObject);
+const jsonObject = convertYAMLToJSON(complexString);
+console.log(jsonObject);
 
 // CSV to JSON Example Usage
 const csvString = `
 album, year, US_peak_chart_post
 The White Stripes, 1999, -
-De Stijl, 2000
+De Stijl, 2000, -
 White Blood Cells, 2001, 61
 Elephant, 2003, 6
 Get Behind Me Satan, 2005, 3
@@ -179,9 +183,8 @@ const jsonString = `
     }
 ]
 `;
-// console.log(convertCSVToJSON(csvString));
-// console.log(parseJSONForCSV(jsonString));
-console.log(convertJSONToFlatFile(jsonString, "\n", ";"));
+console.log(convertFlatFileToJSON(csvString, ","));
+// console.log(convertJSONToFlatFile(jsonString, "\n", ";"));
 
 // Example usage for INI
 
@@ -247,4 +250,4 @@ const jsonStringForINI = `
 `;
 
 // console.log(convertINIToJSON(iniString));
-console.log(convertJSONToINI(jsonStringForINI));
+// console.log(convertJSONToINI(jsonStringForINI));
