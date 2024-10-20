@@ -31,7 +31,7 @@ npm install @smv1999/datamorph
 
 Let's see how to convert CSV to JSON.
 
-```
+```js
 const csvString = `
 album, year, US_peak_chart_post
 The White Stripes, 1999, -
@@ -53,7 +53,7 @@ In the above example, we pass the contents of the CSV file, i.e., CSV string as 
 
 It will generate the following output in JSON format:
 
-```
+```json
 [
   {
     "album": "The White Stripes",
