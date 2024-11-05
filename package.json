@@ -1,6 +1,6 @@
 {
   "name": "@smv1999/datamorph",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "description": "A package that allows you to convert your data between different formats.",
   "main": "index.js",
   "scripts": {

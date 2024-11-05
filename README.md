@@ -21,7 +21,7 @@ The following conversions are supported in the current version of the package:
 
 ### Usage
 
-You can install the package using the following command:
+You can install the latest version of the package using the following command:
 
 ```
 npm install @smv1999/datamorph
